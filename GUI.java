@@ -3,17 +3,15 @@
 import java.awt.BorderLayout;
 //import java.awt.event.ActionEvent;
 //import java.awt.event.ActionListener;
-import javax.swing.SwingUtilities;
 
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 //import javax.swing.JButton;
-//import javax.swing.JOptionPane;
 
+//Class to generate gui, which will facilitate input/ output of data
 public class GUI extends JFrame{
 
     JPanel panel;
@@ -26,15 +24,17 @@ public class GUI extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
 
-        //panel = new JPanel(new BorderLayout());
+        panel = new JPanel(new BorderLayout());
 
         table = new JTable(i.getHold(),i.getTitle());
+        
         //table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        //panel.add(table, BorderLayout.NORTH);
+        
         pane = new JScrollPane(table);
+        panel.add(pane, BorderLayout.NORTH);
 
-        add(pane, BorderLayout.NORTH);
+        add(panel, BorderLayout.NORTH);
 
         setVisible(true);
     }

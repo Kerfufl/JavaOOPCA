@@ -1,7 +1,5 @@
 //Main 'driver' code for the project
 
-import javax.swing.SwingUtilities;
-
 public class Control
 {
     public static void main(String[] args)
