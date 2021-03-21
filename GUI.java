@@ -24,7 +24,7 @@ public class GUI extends JFrame{
         super(title);
         setSize(900,500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
+        
 
         //panel = new JPanel(new BorderLayout());
 
@@ -35,5 +35,8 @@ public class GUI extends JFrame{
         pane = new JScrollPane(table);
 
         add(pane, BorderLayout.NORTH);
+
+        setVisible(true);
     }
+    
 }

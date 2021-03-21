@@ -12,6 +12,5 @@ public class Control
         data.Printline();
         //data.printFactors();
         GUI g = new GUI("bruh", data);
-        //SwingUtilities.invokeLater(GUI::);
     }
 }
