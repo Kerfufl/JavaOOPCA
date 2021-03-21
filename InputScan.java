@@ -8,11 +8,15 @@ public class InputScan
     File csv;
     Scanner scan;
     private String file;
+
+
+    private String[] title;
     private String[][] hold = new String[100][6];
     //Only need to instantiate the file name
     public InputScan(String file)
     {
         this.file = file;
+        title = new String[] {"Gender","Parent/Guardian","Part-time Job","Urban/Rural","Studies Business","Entrepreneur"};
     }
     //Function to debug file reading 
     public void Printline()
@@ -76,6 +80,15 @@ public class InputScan
     public void setFile(String file) {
         this.file = file;
     }
+
+    public String[] getTitle() {
+        return this.title;
+    }
+
+    public void setTitle(String[] title) {
+        this.title = title;
+    }
+
 
     public String[][] getHold() {
         return this.hold;
