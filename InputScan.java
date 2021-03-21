@@ -8,7 +8,7 @@ public class InputScan
     File csv;
     Scanner scan;
     private String file;
-    String[][] hold = new String[10][10];
+    private String[][] hold = new String[100][6];
     //Only need to instantiate the file name
     public InputScan(String file)
     {
@@ -27,7 +27,7 @@ public class InputScan
             String[] temp = new String[6];
             
             //Nested loop to split dataset into accessible chunks
-            for(int i=0;i<10;i++)
+            for(int i=0;i<103;i++)
             {
                 //Prevents first three lines from being accessed
                 if(i>2)
@@ -56,12 +56,15 @@ public class InputScan
     //Debug function for checking arraylist capabilities 
     public void printFactors()
     {
-        for(int i=0;i<7;i++)
+        //Iterates through each 'row'
+        for(int i=0;i<100;i++)
         {
+            //Prints the factors of a row on a single line
             for(int j=0;j<6;j++)
             {
                 System.out.print(hold[i][j]+" ");
             }
+            //Prints new line
             System.out.println("");
         }
     }
@@ -72,6 +75,14 @@ public class InputScan
 
     public void setFile(String file) {
         this.file = file;
+    }
+
+    public String[][] getHold() {
+        return this.hold;
+    }
+
+    public void setHold(String[][] hold) {
+        this.hold = hold;
     }
 
 
