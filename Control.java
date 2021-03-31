@@ -7,8 +7,10 @@ public class Control
         InputScan data = new InputScan("MLdata.csv");
         
         
-        data.Printline();
-        //data.printFactors();
-        GUI g = new GUI("bruh", data);
+        //data.Printline();
+        data.PrintFactors();
+        data.PrintPercent();
+
+        //GUI g = new GUI("bruh", data);
     }
 }
