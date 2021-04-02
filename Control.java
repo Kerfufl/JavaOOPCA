@@ -9,7 +9,7 @@ public class Control
         
         //data.Printline();
         data.PrintFactors();
-        //data.PrintPercent();
+        data.PrintPercent();
 
         //GUI g = new GUI("bruh", data);
     }

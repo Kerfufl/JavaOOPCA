@@ -26,40 +26,25 @@ public class InputScan
 
     private int total;
     //gender
-    private int gm;
-    private int gf;
-
     private float pgm;
     private float pgf;
+
     //parental business
-    private int py;
-    private int pn;
-    
     private float ppy; 
     private float ppn;
-    //part time job
-    private int jy;
-    private int jn;
 
+    //part time job
     private float pjy; 
     private float pjn;
 
     //address
-    private int au;
-    private int ar;
-
     private float pau; 
     private float par;
-    //business studies
-    private int by;
-    private int bn;
 
+    //business studies
     private float pby; 
     private float pbn;
     //integers tracking number of students who became entrepreneurs
-    private int ey;
-    private int en;
-
     private float pey;
     private float pen;
     
@@ -92,63 +77,52 @@ public class InputScan
                     //Checks for parameters, and increments relevant variable
                     if(temp[0].equals("Male"))
                     {
-                        gm++;
                         factors[0][0]++;
                     } else if(temp[0].equals("Female"))
                     {
-                        gf++;
                         factors[1][0]++;
                     }
 
                     if(temp[1].equals("Yes"))
                     {
-                        py++;
                         factors[2][0]++;
                     } else if(temp[1].equals("No"))
                     {
-                        pn++;
                         factors[3][0]++;
                     }
 
                     if(temp[2].equals("Yes"))
                     {
-                        jy++;
                         factors[4][0]++;
                     } else if(temp[2].equals("No"))
                     {
-                        jn++;
                         factors[5][0]++;
                     }
 
                     if(temp[3].equals("Urban"))
                     {
-                        au++;
                         factors[6][0]++;
                     } else if(temp[3].equals("Rural"))
                     {
-                        ar++;
                         factors[7][0]++;
                     }
 
                     if(temp[4].equals("Yes"))
                     {
-                        by++;
+                        
                         factors[8][0]++;
                     } else if(temp[4].equals("No"))
                     {
-                        bn++;
                         factors[9][0]++;
                     }
 
                     if(temp[5].equals("Yes"))
                     {
-                        ey++;
                         factors[10][0]++;
                         //Sets function to increment if 
                         yn = 1;
                     } else if(temp[5].equals("No"))
                     {
-                        en++;
                         factors[11][0]++;
 
                         yn = 2;
@@ -158,9 +132,9 @@ public class InputScan
                         hold[(i-3)][j]= temp[j];
                         //System.out.println(hold[1][1]);
                     }
-
+                    //Increments factors whether student is entrepreneur or not
                     given(temp,yn);
-
+                    //Increments total number of students
                     total++;
                 } else {
                     //Skips line to get to relevant data
@@ -171,23 +145,23 @@ public class InputScan
             //Closes scanner to prevent resource leakage
             scan.close();
             //Calculates percentages for later use
-            pey = (float)ey / (float)total;
-            pen = (float)en / (float)total;
+            pey = (float)factors[10][0] / (float)total;
+            pen = (float)factors[11][0] / (float)total;
 
-            pgm = (float)gm / (float)total;
-            pgf = (float)gf / (float)total;
+            pgm = (float)factors[0][0] / (float)total;
+            pgf = (float)factors[1][0] / (float)total;
 
-            ppy = (float)py / (float)total;
-            ppn = (float)pn / (float)total;
+            ppy = (float)factors[2][0] / (float)total;
+            ppn = (float)factors[3][0] / (float)total;
 
-            pjy = (float)jy / (float)total;
-            pjn = (float)jn / (float)total;
+            pjy = (float)factors[4][0] / (float)total;
+            pjn = (float)factors[5][0] / (float)total;
 
-            pau = (float)au / (float)total;
-            par = (float)ar / (float)total;
+            pau = (float)factors[6][0] / (float)total;
+            par = (float)factors[7][0] / (float)total;
 
-            pby = (float)by / (float)total;
-            pbn = (float)bn / (float)total;
+            pby = (float)factors[8][0] / (float)total;
+            pbn = (float)factors[9][0] / (float)total;
             System.out.println(pey + " " + pen);
             
         } catch(FileNotFoundException e)
@@ -218,10 +192,10 @@ public class InputScan
 
                     if(temp[5].equals("Yes"))
                     {
-                        ey++;
+                        
                     } else if(temp[5].equals("No"))
                     {
-                        en++;
+                        
                     }
                     for(int j=0;j<temp.length;j++)
                     {
@@ -251,63 +225,52 @@ public class InputScan
     {
         if(temp[0].equals("Male"))
                     {
-                        gm++;
                         factors[0][yn]++;
                     } else if(temp[0].equals("Female"))
                     {
-                        gf++;
                         factors[1][yn]++;
                     }
 
                     if(temp[1].equals("Yes"))
                     {
-                        py++;
                         factors[2][yn]++;
                     } else if(temp[1].equals("No"))
                     {
-                        pn++;
                         factors[3][yn]++;
                     }
 
                     if(temp[2].equals("Yes"))
                     {
-                        jy++;
                         factors[4][yn]++;
                     } else if(temp[2].equals("No"))
                     {
-                        jn++;
                         factors[5][yn]++;
                     }
 
                     if(temp[3].equals("Urban"))
                     {
-                        au++;
                         factors[6][yn]++;
                     } else if(temp[3].equals("Rural"))
                     {
-                        ar++;
                         factors[7][yn]++;
                     }
 
                     if(temp[4].equals("Yes"))
                     {
-                        by++;
                         factors[8][yn]++;
                     } else if(temp[4].equals("No"))
                     {
-                        bn++;
+                        
                         factors[9][yn]++;
                     }
 
                     if(temp[5].equals("Yes"))
                     {
-                        ey++;
                         factors[10][yn]++;
                         //Sets function to increment if 
                         yn = 1;
                     } else if(temp[5].equals("No"))
                     {
-                        en++;
                         factors[11][yn]++;
 
                         yn = 2;
@@ -399,22 +362,6 @@ public class InputScan
 
     public void setHold(String[][] hold) {
         this.hold = hold;
-    }
-
-    public int getEy() {
-        return this.ey;
-    }
-
-    public void setEy(int ey) {
-        this.ey = ey;
-    }
-
-    public int getEn() {
-        return this.en;
-    }
-
-    public void setEn(int en) {
-        this.en = en;
     }
 
 
