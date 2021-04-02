@@ -9,9 +9,20 @@ public class InputScan
     Scanner scan;
     private String file;
 
-
+    //Holds headings for table in gui
     private String[] title;
+
+    //Stores data from csv
     private String[][] hold = new String[291][6];
+
+    /*Stores factors for
+        0: Total
+        1: Entrepreneur==yes
+        2: Entrepreneur==no
+        [12][3], stores 1/0s together for easier access
+        eg [1-2][0] stores genders overall etc
+    */
+    private int[][] factors;
 
     private int total;
     //gender
@@ -50,12 +61,17 @@ public class InputScan
     private int en;
 
     private float pey;
-    private float pen; 
+    private float pen;
+    
+    //Differentiates between entrepreneurs and not-entrepreneurs
+    private int yn;
     //Instantiates the file name
     public InputScan(String file)
     {
         this.file = file;
         title = new String[] {"Gender","Parent/Guardian","Part-time Job","Urban/Rural","Studies Business","Entrepreneur"};
+
+        factors = new int[12][3];
 
         //To catch FileNotFoundError
         try
@@ -77,55 +93,73 @@ public class InputScan
                     if(temp[0].equals("Male"))
                     {
                         gm++;
+                        factors[0][0]++;
                     } else if(temp[0].equals("Female"))
                     {
                         gf++;
+                        factors[1][0]++;
                     }
 
                     if(temp[1].equals("Yes"))
                     {
                         py++;
+                        factors[2][0]++;
                     } else if(temp[1].equals("No"))
                     {
                         pn++;
+                        factors[3][0]++;
                     }
 
                     if(temp[2].equals("Yes"))
                     {
                         jy++;
+                        factors[4][0]++;
                     } else if(temp[2].equals("No"))
                     {
                         jn++;
+                        factors[5][0]++;
                     }
 
                     if(temp[3].equals("Urban"))
                     {
                         au++;
+                        factors[6][0]++;
                     } else if(temp[3].equals("Rural"))
                     {
                         ar++;
+                        factors[7][0]++;
                     }
 
                     if(temp[4].equals("Yes"))
                     {
                         by++;
+                        factors[8][0]++;
                     } else if(temp[4].equals("No"))
                     {
                         bn++;
+                        factors[9][0]++;
                     }
 
                     if(temp[5].equals("Yes"))
                     {
                         ey++;
+                        factors[10][0]++;
+                        //Sets function to increment if 
+                        yn = 1;
                     } else if(temp[5].equals("No"))
                     {
                         en++;
+                        factors[11][0]++;
+
+                        yn = 2;
                     }
                     for(int j=0;j<temp.length;j++)
                     {
                         hold[(i-3)][j]= temp[j];
                         //System.out.println(hold[1][1]);
                     }
+
+                    given(temp,yn);
 
                     total++;
                 } else {
@@ -212,15 +246,99 @@ public class InputScan
         }
     }
 
+    //Increments factors whether student becomes entrepreneur, declutters init function
+    private void given(String[] temp, int yn)
+    {
+        if(temp[0].equals("Male"))
+                    {
+                        gm++;
+                        factors[0][yn]++;
+                    } else if(temp[0].equals("Female"))
+                    {
+                        gf++;
+                        factors[1][yn]++;
+                    }
+
+                    if(temp[1].equals("Yes"))
+                    {
+                        py++;
+                        factors[2][yn]++;
+                    } else if(temp[1].equals("No"))
+                    {
+                        pn++;
+                        factors[3][yn]++;
+                    }
+
+                    if(temp[2].equals("Yes"))
+                    {
+                        jy++;
+                        factors[4][yn]++;
+                    } else if(temp[2].equals("No"))
+                    {
+                        jn++;
+                        factors[5][yn]++;
+                    }
+
+                    if(temp[3].equals("Urban"))
+                    {
+                        au++;
+                        factors[6][yn]++;
+                    } else if(temp[3].equals("Rural"))
+                    {
+                        ar++;
+                        factors[7][yn]++;
+                    }
+
+                    if(temp[4].equals("Yes"))
+                    {
+                        by++;
+                        factors[8][yn]++;
+                    } else if(temp[4].equals("No"))
+                    {
+                        bn++;
+                        factors[9][yn]++;
+                    }
+
+                    if(temp[5].equals("Yes"))
+                    {
+                        ey++;
+                        factors[10][yn]++;
+                        //Sets function to increment if 
+                        yn = 1;
+                    } else if(temp[5].equals("No"))
+                    {
+                        en++;
+                        factors[11][yn]++;
+
+                        yn = 2;
+                    }
+    }
+
     //Debug function for checking array capabilities 
     public void PrintFactors()
     {
-        System.out.println("Total: "+total+"  Entrepreneurs: "+ey+"  Not Entrepreneurs: "+en);
-        System.out.println("Males: "+gm+"  Females: "+gf);
-        System.out.println("Parents owned business: "+py+"  Parents didn't own business: "+pn);
-        System.out.println("Has part-time job: "+jy+"  Not Entrepreneurs: "+jn);
-        System.out.println("Urban: "+au+"  Rural: "+ar);
-        System.out.println("Studies business: "+by+"  Does not study business: "+bn);
+        System.out.println("Total: "+total+"  Entrepreneurs: "+factors[10][0]+"  Not Entrepreneurs: "+factors[11][0]);
+        System.out.println("Males: "+factors[0][0]+"  Females: "+factors[1][0]);
+        System.out.println("Parents owned business: "+factors[2][0]+"  Parents didn't own business: "+factors[3][0]);
+        System.out.println("Has part-time job: "+factors[4][0]+"  No job: "+factors[5][0]);
+        System.out.println("Urban: "+factors[6][0]+"  Rural: "+factors[7][0]);
+        System.out.println("Studies business: "+factors[8][0]+"  Does not study business: "+factors[9][0]);
+        System.out.println("");
+
+        System.out.println("Entreprenur==yes");
+        System.out.println("Males: "+factors[0][1]+"  Females: "+factors[1][1]);
+        System.out.println("Parents owned business: "+factors[2][1]+"  Parents didn't own business: "+factors[3][1]);
+        System.out.println("Has part-time job: "+factors[4][1]+"  No job: "+factors[5][1]);
+        System.out.println("Urban: "+factors[6][1]+"  Rural: "+factors[7][1]);
+        System.out.println("Studies business: "+factors[8][1]+"  Does not study business: "+factors[9][1]);
+        System.out.println("");
+
+        System.out.println("Entreprenur==no");
+        System.out.println("Males: "+factors[0][2]+"  Females: "+factors[1][2]);
+        System.out.println("Parents owned business: "+factors[2][2]+"  Parents didn't own business: "+factors[3][2]);
+        System.out.println("Has part-time job: "+factors[4][2]+"  No job: "+factors[5][2]);
+        System.out.println("Urban: "+factors[6][2]+"  Rural: "+factors[7][2]);
+        System.out.println("Studies business: "+factors[8][2]+"  Does not study business: "+factors[9][2]);
         System.out.println("");
         /*
         //Iterates through each 'row'
@@ -267,6 +385,13 @@ public class InputScan
         this.title = title;
     }
 
+    public int[][] getFactors() {
+        return this.factors;
+    }
+
+    public void setFactors(int[][] factors) {
+        this.factors = factors;
+    }
 
     public String[][] getHold() {
         return this.hold;
