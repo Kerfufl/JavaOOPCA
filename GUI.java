@@ -17,6 +17,8 @@ public class GUI extends JFrame{
     JPanel panel;
     JTable table;
     JScrollPane pane;
+
+    static final long serialVersionUID = 0;
     public GUI(String title, InputScan i)
     {
         super(title);
