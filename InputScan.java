@@ -23,30 +23,11 @@ public class InputScan
         eg [1-2][0] stores genders overall etc
     */
     private int[][] factors;
+    //Similar to above but for percentages
+    private float[][] percent;
 
     private int total;
-    //gender
-    private float pgm;
-    private float pgf;
-
-    //parental business
-    private float ppy; 
-    private float ppn;
-
-    //part time job
-    private float pjy; 
-    private float pjn;
-
-    //address
-    private float pau; 
-    private float par;
-
-    //business studies
-    private float pby; 
-    private float pbn;
-    //integers tracking number of students who became entrepreneurs
-    private float pey;
-    private float pen;
+    
     
     //Differentiates between entrepreneurs and not-entrepreneurs
     private int yn;
@@ -57,6 +38,7 @@ public class InputScan
         title = new String[] {"Gender","Parent/Guardian","Part-time Job","Urban/Rural","Studies Business","Entrepreneur"};
 
         factors = new int[12][3];
+        percent = new float[12][3];
 
         //To catch FileNotFoundError
         try
@@ -130,7 +112,6 @@ public class InputScan
                     for(int j=0;j<temp.length;j++)
                     {
                         hold[(i-3)][j]= temp[j];
-                        //System.out.println(hold[1][1]);
                     }
                     //Increments factors whether student is entrepreneur or not
                     given(temp,yn);
@@ -145,9 +126,7 @@ public class InputScan
             //Closes scanner to prevent resource leakage
             scan.close();
             //Calculates percentages for later use
-            pey = (float)factors[10][0] / (float)total;
-            pen = (float)factors[11][0] / (float)total;
-
+            /*
             pgm = (float)factors[0][0] / (float)total;
             pgf = (float)factors[1][0] / (float)total;
 
@@ -162,7 +141,25 @@ public class InputScan
 
             pby = (float)factors[8][0] / (float)total;
             pbn = (float)factors[9][0] / (float)total;
+
+            pey = (float)factors[10][0] / (float)total;
+            pen = (float)factors[11][0] / (float)total;
             System.out.println(pey + " " + pen);
+            */
+            //More succinct loop for calculating probabilities
+            for (int i=0;i<12;i++)
+            {
+                percent[i][0] = (float)factors[i][0]/ (float)total;
+            }
+            int h=10;
+            for(int j=1;j<3;j++)
+            {
+                for (int i=0;i<12;i++)
+                {
+                    percent[i][j] = (float)factors[i][j]/ (float)factors[h][j];
+                }
+                h++;
+            }
             
         } catch(FileNotFoundException e)
         {
@@ -321,12 +318,19 @@ public class InputScan
 
     public void PrintPercent()
     {
-        System.out.println("Total: "+total+"  Entrepreneurs: "+pey+"  Not Entrepreneurs: "+pen);
-        System.out.println("Males: "+pgm+"  Females: "+pgf);
-        System.out.println("Parents owned business: "+ppy+"  Parents didn't own business: "+ppn);
-        System.out.println("Has part-time job: "+pjy+"  Not Entrepreneurs: "+pjn);
-        System.out.println("Urban: "+pau+"  Rural: "+par);
-        System.out.println("Studies business: "+pby+"  Does not study business: "+pbn);
+        System.out.println("Total: "+total+"  Entrepreneurs: "+percent[10][0]+"  Not Entrepreneurs: "+percent[11][0]);
+        for(int i=0;i<3;i++)
+        {
+        System.out.println("Male: "+percent[0][i]+"  Female: "+percent[1][i]);
+        System.out.println("Parents owned business: "+percent[2][i]+"  Parents didn't own business: "+percent[3][i]);
+        System.out.println("Has part-time job: "+percent[4][i]+"  No job: "+percent[5][i]);
+        System.out.println("Urban: "+percent[6][i]+"  Rural: "+percent[7][i]);
+        System.out.println("Studies business: "+percent[8][i]+"  Does not study business: "+percent[9][i]);
+        System.out.println("");
+        }
+        
+
+        
         
     }
 

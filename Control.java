@@ -8,7 +8,7 @@ public class Control
         
         
         //data.Printline();
-        data.PrintFactors();
+        //data.PrintFactors();
         data.PrintPercent();
 
         //GUI g = new GUI("bruh", data);
