@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 //Class to read MLdata.csv file, with functions pertaining to such
 public class InputScan
 {
+    Bayes bae;
     File csv;
     Scanner scan;
     private String file;
@@ -160,6 +161,9 @@ public class InputScan
                 }
                 h++;
             }
+
+            //Exports data required for Naive Bayes calculation
+            bae = new Bayes(percent);
             
         } catch(FileNotFoundException e)
         {
@@ -168,7 +172,7 @@ public class InputScan
     }
     
     //Defunct function to debug file reading, now integrated into constructor 
-    public void Printline()
+    public void printLine()
     {
         //To catch FileNotFoundError
         try
@@ -275,7 +279,7 @@ public class InputScan
     }
 
     //Debug function for checking array capabilities 
-    public void PrintFactors()
+    public void printFactors()
     {
         System.out.println("Total: "+total+"  Entrepreneurs: "+factors[10][0]+"  Not Entrepreneurs: "+factors[11][0]);
         System.out.println("Males: "+factors[0][0]+"  Females: "+factors[1][0]);
@@ -316,7 +320,7 @@ public class InputScan
         */
     }
 
-    public void PrintPercent()
+    public void printPercent()
     {
         System.out.println("Total: "+total+"  Entrepreneurs: "+percent[10][0]+"  Not Entrepreneurs: "+percent[11][0]);
         for(int i=0;i<3;i++)
