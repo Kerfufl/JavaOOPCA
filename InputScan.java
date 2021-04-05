@@ -152,7 +152,10 @@ public class InputScan
             {
                 percent[i][0] = (float)factors[i][0]/ (float)total;
             }
+            //Used to dictate which total by which to divide
             int h=10;
+
+            //Calculates 'yes' first, then 'no' second
             for(int j=1;j<3;j++)
             {
                 for (int i=0;i<12;i++)
@@ -163,6 +166,7 @@ public class InputScan
             }
 
             //Exports data required for Naive Bayes calculation
+            //New class since InputScan was getting cluttered
             bae = new Bayes(percent);
             
         } catch(FileNotFoundException e)
@@ -261,7 +265,6 @@ public class InputScan
                         factors[8][yn]++;
                     } else if(temp[4].equals("No"))
                     {
-                        
                         factors[9][yn]++;
                     }
 

@@ -17,6 +17,9 @@ public class Bayes {
     public Bayes(float[][] percent)
     {
         this.percent = percent;
+
+        givenyes = calculateYes();
+        givenno = calculateNo();
     }
 
     public float calculateYes()
@@ -29,8 +32,8 @@ public class Bayes {
     
     public float calculateNo()
     {
-        nom = (percent[1][1] * percent[3][1] * percent[5][1] * percent[7][1] * percent[9][1] * percent[11][0]);
-        denom =  percent[1][0] * percent[3][0] * percent[5][0] * percent[7][0] * percent[9][0];
+        nom = (percent[0][2] * percent[2][2] * percent[4][2] * percent[6][2] * percent[8][2] * percent[11][0]);
+        denom =  percent[0][0] * percent[2][0] * percent[4][0] * percent[6][0] * percent[8][0];
         return nom/denom;
     }
     
