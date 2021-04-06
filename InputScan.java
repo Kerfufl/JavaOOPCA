@@ -229,56 +229,53 @@ public class InputScan
     private void given(String[] temp, int yn)
     {
         if(temp[0].equals("Male"))
-                    {
-                        factors[0][yn]++;
-                    } else if(temp[0].equals("Female"))
-                    {
-                        factors[1][yn]++;
-                    }
+        {
+            factors[0][yn]++;
+        } else if(temp[0].equals("Female"))
+        {
+            factors[1][yn]++;
+        }
 
-                    if(temp[1].equals("Yes"))
-                    {
-                        factors[2][yn]++;
-                    } else if(temp[1].equals("No"))
-                    {
-                        factors[3][yn]++;
-                    }
+        if(temp[1].equals("Yes"))
+        {
+            factors[2][yn]++;
+        } else if(temp[1].equals("No"))
+        {
+            factors[3][yn]++;
+        }
 
-                    if(temp[2].equals("Yes"))
-                    {
-                        factors[4][yn]++;
-                    } else if(temp[2].equals("No"))
-                    {
-                        factors[5][yn]++;
-                    }
+        if(temp[2].equals("Yes"))
+        {
+            factors[4][yn]++;
+        } else if(temp[2].equals("No"))
+        {
+            factors[5][yn]++;
+        }
 
-                    if(temp[3].equals("Urban"))
-                    {
-                        factors[6][yn]++;
-                    } else if(temp[3].equals("Rural"))
-                    {
-                        factors[7][yn]++;
-                    }
+        if(temp[3].equals("Urban"))
+        {
+            factors[6][yn]++;
+        } else if(temp[3].equals("Rural"))
+        {
+            factors[7][yn]++;
+        }
 
-                    if(temp[4].equals("Yes"))
-                    {
-                        factors[8][yn]++;
-                    } else if(temp[4].equals("No"))
-                    {
-                        factors[9][yn]++;
-                    }
+        if(temp[4].equals("Yes"))
+        {
+            factors[8][yn]++;
+        } else if(temp[4].equals("No"))
+        {
+            factors[9][yn]++;
+        }
 
-                    if(temp[5].equals("Yes"))
-                    {
-                        factors[10][yn]++;
-                        //Sets function to increment if 
-                        yn = 1;
-                    } else if(temp[5].equals("No"))
-                    {
-                        factors[11][yn]++;
-
-                        yn = 2;
-                    }
+        if(temp[5].equals("Yes"))
+        {
+            factors[10][yn]++;
+            //Sets function to increment if 
+        } else if(temp[5].equals("No"))
+        {
+            factors[11][yn]++;
+        }
     }
 
     //Debug function for checking array capabilities 

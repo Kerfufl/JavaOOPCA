@@ -36,5 +36,7 @@ public class Bayes {
         denom =  percent[0][0] * percent[2][0] * percent[4][0] * percent[6][0] * percent[8][0];
         return nom/denom;
     }
+
+    
     
 }

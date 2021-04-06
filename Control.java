@@ -8,10 +8,10 @@ public class Control
         //data.printLine();
         //data.printFactors();
         data.printPercent();
+        
+        //System.out.println(data.bae.calculateYes());
+        //System.out.println(data.bae.calculateNo());
 
-        System.out.println(data.bae.calculateYes());
-        System.out.println(data.bae.calculateNo());
-
-        //GUI g = new GUI("bruh", data); 
+        //GUI g = new GUI("bruh", data);
     }
 }
