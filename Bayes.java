@@ -18,25 +18,66 @@ public class Bayes {
     {
         this.percent = percent;
 
-        givenyes = calculateYes();
-        givenno = calculateNo();
+        givenyes = calculateYes(0,0,0,0,0);
+        givenno = calculateNo(0,0,0,0,0);
     }
 
-    public float calculateYes()
+    //
+    public float calculateYes(int g, int p, int j, int a, int b)
     {
         //Test using 'default' value for each factor where entrepreneur == yes
-        nom = (percent[0][1] * percent[2][1] * percent[4][1] * percent[6][1] * percent[8][1] * percent[10][0]);
-        denom =  percent[0][0] * percent[2][0] * percent[4][0] * percent[6][0] * percent[8][0];
+        nom = (percent[0+g][1] * percent[2+p][1] * percent[4+j][1] * percent[6+a][1] * percent[8+b][1] * percent[10][0]);
+        denom =  percent[0+g][0] * percent[2+p][0] * percent[4+j][0] * percent[6+a][0] * percent[8+b][0];
         return nom/denom;
     }
     
-    public float calculateNo()
+    public float calculateNo(int g, int p, int j, int a, int b)
     {
-        nom = (percent[0][2] * percent[2][2] * percent[4][2] * percent[6][2] * percent[8][2] * percent[11][0]);
-        denom =  percent[0][0] * percent[2][0] * percent[4][0] * percent[6][0] * percent[8][0];
+        nom = (percent[0+g][2] * percent[2+p][2] * percent[4+j][2] * percent[6+a][2] * percent[8+b][2] * percent[11][0]);
+        denom =  percent[0+g][0] * percent[2+p][0] * percent[4+j][0] * percent[6+a][0] * percent[8+b][0];
         return nom/denom;
     }
 
+
+    public float getNom() {
+        return this.nom;
+    }
+
+    public void setNom(float nom) {
+        this.nom = nom;
+    }
+
+    public float getDenom() {
+        return this.denom;
+    }
+
+    public void setDenom(float denom) {
+        this.denom = denom;
+    }
+
+    public float getGivenyes() {
+        return this.givenyes;
+    }
+
+    public void setGivenyes(float givenyes) {
+        this.givenyes = givenyes;
+    }
+
+    public float getGivenno() {
+        return this.givenno;
+    }
+
+    public void setGivenno(float givenno) {
+        this.givenno = givenno;
+    }
+
+    public float[][] getPercent() {
+        return this.percent;
+    }
+
+    public void setPercent(float[][] percent) {
+        this.percent = percent;
+    }
     
     
 }

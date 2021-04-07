@@ -331,6 +331,8 @@ public class InputScan
         System.out.println("Urban: "+percent[6][i]+"  Rural: "+percent[7][i]);
         System.out.println("Studies business: "+percent[8][i]+"  Does not study business: "+percent[9][i]);
         System.out.println("");
+
+        System.out.println(bae.getGivenyes()+ "  "+bae.getGivenno());
         }
         
 

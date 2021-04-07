@@ -12,6 +12,6 @@ public class Control
         //System.out.println(data.bae.calculateYes());
         //System.out.println(data.bae.calculateNo());
 
-        //GUI g = new GUI("bruh", data);
+        GUI g = new GUI("bruh", data);
     }
 }
