@@ -39,27 +39,33 @@ public class Bayes {
     }
 
 
-    public float getNom() {
+    public float getNom()
+    {
         return this.nom;
     }
 
-    public void setNom(float nom) {
+    public void setNom(float nom)
+    {
         this.nom = nom;
     }
 
-    public float getDenom() {
+    public float getDenom()
+    {
         return this.denom;
     }
 
-    public void setDenom(float denom) {
+    public void setDenom(float denom)
+    {
         this.denom = denom;
     }
 
-    public float getGivenyes() {
+    public float getGivenyes()
+    {
         return this.givenyes;
     }
 
-    public void setGivenyes(float givenyes) {
+    public void setGivenyes(float givenyes)
+    {
         this.givenyes = givenyes;
     }
 
@@ -67,15 +73,18 @@ public class Bayes {
         return this.givenno;
     }
 
-    public void setGivenno(float givenno) {
+    public void setGivenno(float givenno)
+    {
         this.givenno = givenno;
     }
 
-    public float[][] getPercent() {
+    public float[][] getPercent()
+    {
         return this.percent;
     }
 
-    public void setPercent(float[][] percent) {
+    public void setPercent(float[][] percent)
+    {
         this.percent = percent;
     }
     
