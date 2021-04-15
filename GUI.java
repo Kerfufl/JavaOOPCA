@@ -59,18 +59,26 @@ public class GUI extends JFrame implements ActionListener{
         panel.add(j, BorderLayout.NORTH);
         panel.add(a, BorderLayout.NORTH);
         panel.add(b, BorderLayout.NORTH);
+        panel.add(button);
 
         add(panel, BorderLayout.NORTH);
 
         setVisible(true);
-        JOptionPane.showMessageDialog(this, scan.bae.getGivenyes());
+        //JOptionPane.showMessageDialog(this, scan.bae.getGivenyes());
     }
 
     public void actionPerformed(ActionEvent e)
     {
         if(e.getSource()==button)
         {
-            JOptionPane.showMessageDialog(this, scan.bae.getGivenyes());
+            //Test for inputting factors to check if student becomes entrepreneur
+            JOptionPane.showMessageDialog(this, 
+            scan.bae.calculateYes(g.getSelectedIndex()
+            ,p.getSelectedIndex(),j.getSelectedIndex(),
+            a.getSelectedIndex(),b.getSelectedIndex())+"\n"+
+            scan.bae.calculateNo(g.getSelectedIndex()
+            ,p.getSelectedIndex(),j.getSelectedIndex(),
+            a.getSelectedIndex(),b.getSelectedIndex()));
         }
     }
     

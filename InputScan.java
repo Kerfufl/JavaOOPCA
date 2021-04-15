@@ -1,6 +1,7 @@
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.lang.Math;
 
 //Class to read MLdata.csv file, with functions pertaining to such
 public class InputScan
@@ -10,11 +11,18 @@ public class InputScan
     Scanner scan;
     private String file;
 
+    //Used for dividing file between build and test data
+    float flen;
+    //Represents percentage of data used to build model
+    float per;
+    int build;
+    
+
     //Holds headings for table in gui
     private String[] title;
 
     //Stores data from csv
-    private String[][] hold = new String[291][6];
+    private String[][] hold;
 
     /*Stores factors for
         0: Total
@@ -37,21 +45,26 @@ public class InputScan
     {
         this.file = file;
         title = new String[] {"Gender","Parent/Guardian","Part-time Job","Urban/Rural","Studies Business","Entrepreneur"};
+        //Sets max length of array and percentage to be used as build data
+        flen = 291;
+        per=.5f;
+        //Sets percentage of build data as int, to be used in loops
+        build=Math.round(flen*per);
+        //System.out.println(build);
 
+        hold = new String[(int)flen][6];
         factors = new int[12][3];
         percent = new float[12][3];
-
         //To catch FileNotFoundError
         try
         {
             File csv = new File(file);
             Scanner scan = new Scanner(csv);
-            
             //Temp array to then transfer to 2D array later
             String[] temp = new String[6];
             
             //Nested loop to split dataset into accessible chunks
-            for(int i=0;i<291;i++)
+            for(int i=0;i<build;i++)
             {
                 //Prevents first three lines from being accessed
                 if(i>2)
@@ -126,27 +139,7 @@ public class InputScan
             }
             //Closes scanner to prevent resource leakage
             scan.close();
-            //Calculates percentages for later use
-            /*
-            pgm = (float)factors[0][0] / (float)total;
-            pgf = (float)factors[1][0] / (float)total;
-
-            ppy = (float)factors[2][0] / (float)total;
-            ppn = (float)factors[3][0] / (float)total;
-
-            pjy = (float)factors[4][0] / (float)total;
-            pjn = (float)factors[5][0] / (float)total;
-
-            pau = (float)factors[6][0] / (float)total;
-            par = (float)factors[7][0] / (float)total;
-
-            pby = (float)factors[8][0] / (float)total;
-            pbn = (float)factors[9][0] / (float)total;
-
-            pey = (float)factors[10][0] / (float)total;
-            pen = (float)factors[11][0] / (float)total;
-            System.out.println(pey + " " + pen);
-            */
+            
             //More succinct loop for calculating probabilities
             for (int i=0;i<12;i++)
             {

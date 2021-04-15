@@ -17,7 +17,7 @@ public class Bayes {
     public Bayes(float[][] percent)
     {
         this.percent = percent;
-
+        
         givenyes = calculateYes(0,0,0,0,0);
         givenno = calculateNo(0,0,0,0,0);
     }
