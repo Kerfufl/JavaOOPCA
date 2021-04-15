@@ -7,6 +7,7 @@ public class Control
         InputScan data = new InputScan("MLdata.csv");
         //data.printLine();
         data.printFactors();
+        data.printHold();
         //data.printPercent();
         //System.out.println(data.bae.calculateYes());
         //System.out.println(data.bae.calculateNo());

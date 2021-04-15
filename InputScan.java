@@ -2,6 +2,8 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.lang.Math;
+import java.util.Arrays;
+import java.util.ArrayList;
 
 //Class to read MLdata.csv file, with functions pertaining to such
 public class InputScan
@@ -21,9 +23,8 @@ public class InputScan
     //Holds headings for table in gui
     private String[] title;
 
-    //Stores data from csv
-    private String[][] hold;
-
+    //Stores data from csv, used for future additions to set
+    private ArrayList<String[]> holding;
     /*Stores factors for
         0: Total
         1: Entrepreneur==yes
@@ -51,8 +52,7 @@ public class InputScan
         //Sets percentage of build data as int, to be used in loops
         build=Math.round(flen*per);
         //System.out.println(build);
-
-        hold = new String[(int)flen][6];
+        holding = new ArrayList<String[]>();
         factors = new int[12][3];
         percent = new float[12][3];
         //To catch FileNotFoundError
@@ -123,10 +123,13 @@ public class InputScan
 
                         yn = 2;
                     }
+                    /*
                     for(int j=0;j<temp.length;j++)
                     {
-                        hold[(i-3)][j]= temp[j];
-                    }
+                        //hold[(i-3)][j]= temp[j];
+                        holding.add(temp);
+                    }*/
+                    holding.add(temp);
                     //Increments factors whether student is entrepreneur or not
                     given(temp,yn);
                     //Increments total number of students
@@ -169,6 +172,7 @@ public class InputScan
     }
     
     //Defunct function to debug file reading, now integrated into constructor 
+    /*
     public void printLine()
     {
         //To catch FileNotFoundError
@@ -217,6 +221,7 @@ public class InputScan
             System.out.println("File not found!");
         }
     }
+    */
 
     //Increments factors whether student becomes entrepreneur, declutters init function
     private void given(String[] temp, int yn)
@@ -282,7 +287,7 @@ public class InputScan
         System.out.println("Studies business: "+factors[8][0]+"  Does not study business: "+factors[9][0]);
         System.out.println("");
 
-        System.out.println("Entreprenur==yes");
+        System.out.println("Entrepreneur==yes");
         System.out.println("Males: "+factors[0][1]+"  Females: "+factors[1][1]);
         System.out.println("Parents owned business: "+factors[2][1]+"  Parents didn't own business: "+factors[3][1]);
         System.out.println("Has part-time job: "+factors[4][1]+"  No job: "+factors[5][1]);
@@ -290,7 +295,7 @@ public class InputScan
         System.out.println("Studies business: "+factors[8][1]+"  Does not study business: "+factors[9][1]);
         System.out.println("");
 
-        System.out.println("Entreprenur==no");
+        System.out.println("Entrepreneur==no");
         System.out.println("Males: "+factors[0][2]+"  Females: "+factors[1][2]);
         System.out.println("Parents owned business: "+factors[2][2]+"  Parents didn't own business: "+factors[3][2]);
         System.out.println("Has part-time job: "+factors[4][2]+"  No job: "+factors[5][2]);
@@ -311,6 +316,15 @@ public class InputScan
             
         }
         */
+    }
+
+    public void printHold()
+    {
+        for(String[] i: holding)
+        {
+            System.out.println(Arrays.toString(i));
+        }
+        
     }
 
     public void printPercent()
@@ -357,14 +371,6 @@ public class InputScan
 
     public void setFactors(int[][] factors) {
         this.factors = factors;
-    }
-
-    public String[][] getHold() {
-        return this.hold;
-    }
-
-    public void setHold(String[][] hold) {
-        this.hold = hold;
     }
 
 

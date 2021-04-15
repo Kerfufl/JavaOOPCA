@@ -40,7 +40,7 @@ public class GUI extends JFrame implements ActionListener{
 
         panel = new JPanel(new FlowLayout());
         
-        table = new JTable(scan.getHold(),scan.getTitle());
+        //table = new JTable(scan.getHold(),scan.getTitle());
         
         button = new JButton("Submit");
         button.addActionListener(this);
