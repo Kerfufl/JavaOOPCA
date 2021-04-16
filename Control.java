@@ -6,12 +6,13 @@ public class Control
     {
         InputScan data = new InputScan("MLdata.csv");
         //data.printLine();
-        data.printFactors();
-        data.printHold();
+        //data.printFactors();
+        //data.printHold();
         //data.printPercent();
+
         //System.out.println(data.bae.calculateYes());
         //System.out.println(data.bae.calculateNo());
 
-        //GUI g = new GUI("bruh", data);
+        GUI g = new GUI("bruh", data);
     }
 }

@@ -12,29 +12,45 @@ public class Bayes {
         [12][3], stores 1/0s together for easier access
         eg [1-2][0] stores genders overall etc
     */
-    private float[][] percent;
+    InputScan scan;
+    //private float[][] percent;
 
-    public Bayes(float[][] percent)
+    public Bayes(float[][] percent, InputScan i)
     {
-        this.percent = percent;
-        
+        //this.percent = percent;
+        scan = i;
+
         givenyes = calculateYes(0,0,0,0,0);
         givenno = calculateNo(0,0,0,0,0);
     }
 
+    //Function to compare yes/no values
+    public String answer(int g, int p, int j, int a, int b)
+    {
+        givenyes= calculateYes(g, p, j, a, b);
+        givenno = calculateNo(g, p, j, a, b);
+        System.out.println(givenyes +"\n"+ givenno+"\n");
+
+        if (givenyes > givenno)
+        {
+            return "This student is likely to become an entrepreneur";
+        } else {
+            return "This student is unlikely to become an entrepreneur";
+        }
+    }
     //
     public float calculateYes(int g, int p, int j, int a, int b)
     {
         //Test using 'default' value for each factor where entrepreneur == yes
-        nom = (percent[0+g][1] * percent[2+p][1] * percent[4+j][1] * percent[6+a][1] * percent[8+b][1] * percent[10][0]);
-        denom =  percent[0+g][0] * percent[2+p][0] * percent[4+j][0] * percent[6+a][0] * percent[8+b][0];
+        nom = (scan.getPercent()[0+g][1] * scan.getPercent()[2+p][1] * scan.getPercent()[4+j][1] * scan.getPercent()[6+a][1] * scan.getPercent()[8+b][1] * scan.getPercent()[10][0]);
+        denom =  scan.getPercent()[0+g][0] * scan.getPercent()[2+p][0] * scan.getPercent()[4+j][0] * scan.getPercent()[6+a][0] * scan.getPercent()[8+b][0];
         return nom/denom;
     }
     
     public float calculateNo(int g, int p, int j, int a, int b)
     {
-        nom = (percent[0+g][2] * percent[2+p][2] * percent[4+j][2] * percent[6+a][2] * percent[8+b][2] * percent[11][0]);
-        denom =  percent[0+g][0] * percent[2+p][0] * percent[4+j][0] * percent[6+a][0] * percent[8+b][0];
+        nom = (scan.getPercent()[0+g][2] * scan.getPercent()[2+p][2] * scan.getPercent()[4+j][2] * scan.getPercent()[6+a][2] * scan.getPercent()[8+b][2] * scan.getPercent()[11][0]);
+        denom =  scan.getPercent()[0+g][0] * scan.getPercent()[2+p][0] * scan.getPercent()[4+j][0] * scan.getPercent()[6+a][0] * scan.getPercent()[8+b][0];
         return nom/denom;
     }
 
@@ -76,16 +92,6 @@ public class Bayes {
     public void setGivenno(float givenno)
     {
         this.givenno = givenno;
-    }
-
-    public float[][] getPercent()
-    {
-        return this.percent;
-    }
-
-    public void setPercent(float[][] percent)
-    {
-        this.percent = percent;
     }
     
     

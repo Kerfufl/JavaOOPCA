@@ -25,6 +25,8 @@ public class InputScan
 
     //Stores data from csv, used for future additions to set
     private ArrayList<String[]> holding;
+
+
     /*Stores factors for
         0: Total
         1: Entrepreneur==yes
@@ -48,7 +50,8 @@ public class InputScan
         title = new String[] {"Gender","Parent/Guardian","Part-time Job","Urban/Rural","Studies Business","Entrepreneur"};
         //Sets max length of array and percentage to be used as build data
         flen = 291;
-        per=.5f;
+        //70% of data is used to 'build'
+        per=.7f;
         //Sets percentage of build data as int, to be used in loops
         build=Math.round(flen*per);
         //System.out.println(build);
@@ -163,7 +166,7 @@ public class InputScan
 
             //Exports data required for Naive Bayes calculation
             //New class since InputScan was getting cluttered
-            bae = new Bayes(percent);
+            bae = new Bayes(percent, this);
             
         } catch(FileNotFoundException e)
         {
@@ -347,8 +350,15 @@ public class InputScan
         
     }
 
-    //Get/Sets for private variables
+    public void addElement(String[] ele)
+    {
+        holding.add(ele);
 
+        //printHold();
+    }
+    
+    
+    //Get/Sets for private variables
     public String getFile() {
         return this.file;
     }
@@ -372,7 +382,13 @@ public class InputScan
     public void setFactors(int[][] factors) {
         this.factors = factors;
     }
+    public float[][] getPercent() {
+        return this.percent;
+    }
 
+    public void setPercent(float[][] percent) {
+        this.percent = percent;
+    }
 
 
 }
