@@ -73,70 +73,9 @@ public class InputScan
                 if(i>2)
                 {
                     temp = scan.nextLine().split(",\\s*");
-                    //Checks for parameters, and increments relevant variable
-                    if(temp[0].equals("Male"))
-                    {
-                        factors[0][0]++;
-                    } else if(temp[0].equals("Female"))
-                    {
-                        factors[1][0]++;
-                    }
-
-                    if(temp[1].equals("Yes"))
-                    {
-                        factors[2][0]++;
-                    } else if(temp[1].equals("No"))
-                    {
-                        factors[3][0]++;
-                    }
-
-                    if(temp[2].equals("Yes"))
-                    {
-                        factors[4][0]++;
-                    } else if(temp[2].equals("No"))
-                    {
-                        factors[5][0]++;
-                    }
-
-                    if(temp[3].equals("Urban"))
-                    {
-                        factors[6][0]++;
-                    } else if(temp[3].equals("Rural"))
-                    {
-                        factors[7][0]++;
-                    }
-
-                    if(temp[4].equals("Yes"))
-                    {
-                        
-                        factors[8][0]++;
-                    } else if(temp[4].equals("No"))
-                    {
-                        factors[9][0]++;
-                    }
-
-                    if(temp[5].equals("Yes"))
-                    {
-                        factors[10][0]++;
-                        //Sets function to increment if 
-                        yn = 1;
-                    } else if(temp[5].equals("No"))
-                    {
-                        factors[11][0]++;
-
-                        yn = 2;
-                    }
-                    /*
-                    for(int j=0;j<temp.length;j++)
-                    {
-                        //hold[(i-3)][j]= temp[j];
-                        holding.add(temp);
-                    }*/
-                    holding.add(temp);
-                    //Increments factors whether student is entrepreneur or not
-                    given(temp,yn);
-                    //Increments total number of students
-                    total++;
+                    
+                    //Succinctly increments factors, to calculate necessary percentages 
+                    factorise(temp);
                 } else {
                     //Skips line to get to relevant data
                     scan.nextLine();
@@ -145,24 +84,9 @@ public class InputScan
             }
             //Closes scanner to prevent resource leakage
             scan.close();
-            
-            //More succinct loop for calculating probabilities
-            for (int i=0;i<12;i++)
-            {
-                percent[i][0] = (float)factors[i][0]/ (float)total;
-            }
-            //Used to dictate which total by which to divide
-            int h=10;
 
-            //Calculates 'yes' first, then 'no' second
-            for(int j=1;j<3;j++)
-            {
-                for (int i=0;i<12;i++)
-                {
-                    percent[i][j] = (float)factors[i][j]/ (float)factors[h][j];
-                }
-                h++;
-            }
+            //Takes factors and converts them to percentages, for use in Naive Bayes
+            percentise();
 
             //Exports data required for Naive Bayes calculation
             //New class since InputScan was getting cluttered
@@ -173,58 +97,6 @@ public class InputScan
             System.out.println("File not found!");
         }
     }
-    
-    //Defunct function to debug file reading, now integrated into constructor 
-    /*
-    public void printLine()
-    {
-        //To catch FileNotFoundError
-        try
-        {
-            File csv = new File(file);
-            Scanner scan = new Scanner(csv);
-            
-            //Temp array to then transfer to 2D array later
-            String[] temp = new String[6];
-            
-            //Nested loop to split dataset into accessible chunks
-            for(int i=0;i<103;i++)
-            {
-                //Prevents first three lines from being accessed
-                if(i>2)
-                {
-                    temp = scan.nextLine().split(",\\s*");
-
-                    if(temp[5].equals("Yes"))
-                    {
-                        
-                    } else if(temp[5].equals("No"))
-                    {
-                        
-                    }
-                    for(int j=0;j<temp.length;j++)
-                    {
-                        hold[(i-3)][j]= temp[j];
-                        //System.out.println(hold[1][1]);
-                    }
-
-                    total++;
-                } else {
-                    //Skips line to get to relevant data
-                    scan.nextLine();
-                }
-                
-            }
-            //Closes scanner to prevent resource leakage
-            scan.close();
-            
-            
-        } catch(FileNotFoundException e)
-        {
-            System.out.println("File not found!");
-        }
-    }
-    */
 
     //Increments factors whether student becomes entrepreneur, declutters init function
     private void given(String[] temp, int yn)
@@ -416,7 +288,7 @@ public class InputScan
         given(temp,yn);
         //Increments total number of students
         total++;
-
+        /*
         //More succinct loop for calculating probabilities
         for (int i=0;i<12;i++)
         {
@@ -434,8 +306,31 @@ public class InputScan
             }
             h++;
         }
+        */
         
     }
+    
+    public void percentise()
+    {
+        //More succinct loop for calculating probabilities
+        for (int i=0;i<12;i++)
+        {
+            percent[i][0] = (float)factors[i][0]/ (float)total;
+        }
+        //Used to dictate which total by which to divide
+        int h=10;
+
+        //Calculates 'yes' first, then 'no' second
+        for(int j=1;j<3;j++)
+        {
+            for (int i=0;i<12;i++)
+            {
+                percent[i][j] = (float)factors[i][j]/ (float)factors[h][j];
+            }
+            h++;
+        }
+    }
+    
     //Get/Sets for private variables
     public String getFile() {
         return this.file;

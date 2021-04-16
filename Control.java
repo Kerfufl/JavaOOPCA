@@ -6,9 +6,9 @@ public class Control
     {
         InputScan data = new InputScan("MLdata.csv");
         //data.printLine();
-        //data.printFactors();
+        data.printFactors();
         //data.printHold();
-        //data.printPercent();
+        data.printPercent();
 
         //System.out.println(data.bae.calculateYes());
         //System.out.println(data.bae.calculateNo());

@@ -100,7 +100,7 @@ public class GUI extends JFrame implements ActionListener{
 
             scan.addElement(temp);
 
-            scan.printHold();
+            //scan.printHold();
         } else if(e.getSource()==reveal)
         {
             vis = !vis;
