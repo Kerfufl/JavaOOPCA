@@ -5,6 +5,10 @@ public class Bayes {
     private float denom;
     private float givenyes;
     private float givenno;
+
+    //Used to determine entrepreneurship when adding insatances from the gui
+    private String entre;
+
     /*Stores percentages for
         0: Total
         1: Entrepreneur==yes
@@ -20,6 +24,8 @@ public class Bayes {
         //this.percent = percent;
         scan = i;
 
+        entre = new String();
+
         givenyes = calculateYes(0,0,0,0,0);
         givenno = calculateNo(0,0,0,0,0);
     }
@@ -33,8 +39,10 @@ public class Bayes {
 
         if (givenyes > givenno)
         {
+            entre = "Yes";
             return "This student is likely to become an entrepreneur";
         } else {
+            entre = "No";
             return "This student is unlikely to become an entrepreneur";
         }
     }
@@ -94,5 +102,21 @@ public class Bayes {
         this.givenno = givenno;
     }
     
+    public String getEntre() {
+        return this.entre;
+    }
+
+    public void setEntre(String entre) {
+        this.entre = entre;
+    }
+
+    public InputScan getScan() {
+        return this.scan;
+    }
+
+    public void setScan(InputScan scan) {
+        this.scan = scan;
+    }
+
     
 }

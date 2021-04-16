@@ -96,9 +96,11 @@ public class GUI extends JFrame implements ActionListener{
 
             temp = new String[] {g.getSelectedItem().toString(),p.getSelectedItem().toString(),
             j.getSelectedItem().toString(), a.getSelectedItem().toString(), 
-            b.getSelectedItem().toString()};
+            b.getSelectedItem().toString(), scan.bae.getEntre()};
 
             scan.addElement(temp);
+
+            scan.printHold();
         } else if(e.getSource()==reveal)
         {
             vis = !vis;
