@@ -1,6 +1,7 @@
 //import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -51,7 +52,7 @@ public class GUI extends JFrame implements ActionListener{
         desc = new JPanel(new FlowLayout());
 
         add = new JPanel(new FlowLayout());
-        
+        add.setBackground(Color.LIGHT_GRAY);
         //table = new JTable(scan.getHold(),scan.getTitle());
         reveal = new JButton("reveal");
         reveal.addActionListener(this);
@@ -79,7 +80,7 @@ public class GUI extends JFrame implements ActionListener{
         add.setVisible(false);
 
         
-        add(add, BorderLayout.SOUTH);
+        add(add);
 
         setVisible(true);
         //JOptionPane.showMessageDialog(this, scan.bae.getGivenyes());

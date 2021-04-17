@@ -1,4 +1,6 @@
 //Holds methods for calculating Naive Bayes
+//Can be accessed through InputScan
+//Uses data held in InputScan
 public class Bayes {
     //Floats to contain class probabilities for Naive Bayes
     private float nom;
@@ -9,17 +11,10 @@ public class Bayes {
     //Used to determine entrepreneurship when adding insatances from the gui
     private String entre;
 
-    /*Stores percentages for
-        0: Total
-        1: Entrepreneur==yes
-        2: Entrepreneur==no
-        [12][3], stores 1/0s together for easier access
-        eg [1-2][0] stores genders overall etc
-    */
+    //Defines InputScan class to access data for use in Naive Bayes
     InputScan scan;
-    //private float[][] percent;
 
-    public Bayes(float[][] percent, InputScan i)
+    public Bayes(InputScan i)
     {
         //this.percent = percent;
         scan = i;
