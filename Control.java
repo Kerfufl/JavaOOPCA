@@ -10,9 +10,6 @@ public class Control
         //data.printHold();
         //data.printPercent();
 
-        //System.out.println(data.bae.calculateYes());
-        //System.out.println(data.bae.calculateNo());
-
         //GUI g = new GUI("Assignment", data);
     }
 }

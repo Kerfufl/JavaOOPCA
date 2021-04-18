@@ -19,6 +19,7 @@ public class InputScan
     float per;
     int build;
     
+    float correct;
 
     //Holds headings for table in gui
     private String[] title;
@@ -60,8 +61,10 @@ public class InputScan
 
         //System.out.println(build);
         holding = new ArrayList<String[]>();
+        testing = new ArrayList<String[]>();
         factors = new int[12][3];
         percent = new float[12][3];
+
         //To catch FileNotFoundError
         try
         {
@@ -103,7 +106,18 @@ public class InputScan
             //New class since InputScan was getting cluttered
             bae = new Bayes(this);
 
-            //for(int i=build;i<flen)
+            float testset=testing.size();
+            correct=0;
+            for (String[] i : testing)
+            {
+                testData(i);
+            }
+            
+            //System.out.println(correct+"\n"+testset);
+            //System.out.println((correct/testset)*100+"% accuracy");
+
+            //Calculates dataset after testing of dataset
+            percentise();
             
         } catch(FileNotFoundException e)
         {
@@ -360,6 +374,7 @@ public class InputScan
         //Compares. Couldn't figure out a way of influencing probabilities, so left blank for now
         if(temp[5].contains(test))
         {
+            correct++;
             addElement(temp);
         } else {
             addElement(temp);
@@ -396,6 +411,88 @@ public class InputScan
     public void setPercent(float[][] percent) {
         this.percent = percent;
     }
+
+
+    public Bayes getBae() {
+        return this.bae;
+    }
+
+    public void setBae(Bayes bae) {
+        this.bae = bae;
+    }
+
+    public File getCsv() {
+        return this.csv;
+    }
+
+    public void setCsv(File csv) {
+        this.csv = csv;
+    }
+
+    public Scanner getScan() {
+        return this.scan;
+    }
+
+    public void setScan(Scanner scan) {
+        this.scan = scan;
+    }
+
+    public float getFlen() {
+        return this.flen;
+    }
+
+    public void setFlen(float flen) {
+        this.flen = flen;
+    }
+
+    public float getPer() {
+        return this.per;
+    }
+
+    public void setPer(float per) {
+        this.per = per;
+    }
+
+    public int getBuild() {
+        return this.build;
+    }
+
+    public void setBuild(int build) {
+        this.build = build;
+    }
+
+    public ArrayList<String[]> getHolding() {
+        return this.holding;
+    }
+
+    public void setHolding(ArrayList<String[]> holding) {
+        this.holding = holding;
+    }
+
+    public ArrayList<String[]> getTesting() {
+        return this.testing;
+    }
+
+    public void setTesting(ArrayList<String[]> testing) {
+        this.testing = testing;
+    }
+
+    public int getTotal() {
+        return this.total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
+
+    public int getYn() {
+        return this.yn;
+    }
+
+    public void setYn(int yn) {
+        this.yn = yn;
+    }
+
 
 
 }
