@@ -19,7 +19,10 @@ public class InputScan
     float per;
     int build;
     
+    //Floats used in the review of test data, counting the correct guesses
     float correct;
+    //and storing total accuracy for use in gui
+    float accuracy;
 
     //Holds headings for table in gui
     private String[] title;
@@ -113,6 +116,7 @@ public class InputScan
                 testData(i);
             }
             
+            //Debug for 
             //System.out.println(correct+"\n"+testset);
             //System.out.println((correct/testset)*100+"% accuracy");
 
@@ -131,51 +135,43 @@ public class InputScan
         if(temp[0].equals("Male"))
         {
             factors[0][0]++;
-        } else if(temp[0].equals("Female"))
-        {
+        } else if(temp[0].equals("Female")) {
             factors[1][0]++;
         }
 
         if(temp[1].equals("Yes"))
         {
             factors[2][0]++;
-        } else if(temp[1].equals("No"))
-        {
+        } else if(temp[1].equals("No")) {
             factors[3][0]++;
         }
 
         if(temp[2].equals("Yes"))
         {
             factors[4][0]++;
-        } else if(temp[2].equals("No"))
-        {
+        } else if(temp[2].equals("No")) {
             factors[5][0]++;
         }
 
         if(temp[3].equals("Urban"))
         {
             factors[6][0]++;
-        } else if(temp[3].equals("Rural"))
-        {
+        } else if(temp[3].equals("Rural")) {
             factors[7][0]++;
         }
 
-        if(temp[4].equals("Yes"))
-        {
+        if(temp[4].equals("Yes")) {
                         
             factors[8][0]++;
-        } else if(temp[4].equals("No"))
-        {
+        } else if(temp[4].equals("No")) {
             factors[9][0]++;
         }
 
-        if(temp[5].equals("Yes"))
-        {
+        if(temp[5].equals("Yes")) {
             factors[10][0]++;
             //Sets function to increment if 
             yn = 1;
-        } else if(temp[5].equals("No"))
-        {
+        } else if(temp[5].equals("No")) {
             factors[11][0]++;
 
             yn = 2;
@@ -210,52 +206,40 @@ public class InputScan
     //Increments factors whether student becomes entrepreneur, declutters init function
     private void given(String[] temp, int yn)
     {
-        if(temp[0].equals("Male"))
-        {
+        if(temp[0].equals("Male")) {
             factors[0][yn]++;
-        } else if(temp[0].equals("Female"))
-        {
+        } else if(temp[0].equals("Female")) {
             factors[1][yn]++;
         }
 
-        if(temp[1].equals("Yes"))
-        {
+        if(temp[1].equals("Yes")) {
             factors[2][yn]++;
-        } else if(temp[1].equals("No"))
-        {
+        } else if(temp[1].equals("No")) {
             factors[3][yn]++;
         }
 
-        if(temp[2].equals("Yes"))
-        {
+        if(temp[2].equals("Yes")) {
             factors[4][yn]++;
-        } else if(temp[2].equals("No"))
-        {
+        } else if(temp[2].equals("No")) {
             factors[5][yn]++;
         }
 
-        if(temp[3].equals("Urban"))
-        {
+        if(temp[3].equals("Urban")) {
             factors[6][yn]++;
-        } else if(temp[3].equals("Rural"))
-        {
+        } else if(temp[3].equals("Rural")) {
             factors[7][yn]++;
         }
 
-        if(temp[4].equals("Yes"))
-        {
+        if(temp[4].equals("Yes")) {
             factors[8][yn]++;
-        } else if(temp[4].equals("No"))
-        {
+        } else if(temp[4].equals("No")) {
             factors[9][yn]++;
         }
 
-        if(temp[5].equals("Yes"))
-        {
+        if(temp[5].equals("Yes")) {
             factors[10][yn]++;
             //Sets function to increment if 
-        } else if(temp[5].equals("No"))
-        {
+        } else if(temp[5].equals("No")) {
             factors[11][yn]++;
         }
     }
@@ -288,9 +272,18 @@ public class InputScan
         System.out.println("");
     }
 
-    public void printHold()
+    public void printHolding()
     {
         for(String[] i: holding)
+        {
+            System.out.println(Arrays.toString(i));
+        }
+        
+    }
+
+    public void printTesting()
+    {
+        for(String[] i: testing)
         {
             System.out.println(Arrays.toString(i));
         }
@@ -329,40 +322,31 @@ public class InputScan
     {
         int g,p,j,a,b;
         g=p=j=a=b=0;
-        if(temp[0].equals("Male"))
-        {
+        if(temp[0].equals("Male")) {
             g=0;
-        } else if(temp[0].equals("Female"))
-        {
+        } else if(temp[0].equals("Female")) {
             g=1;
         }
 
-        if(temp[1].equals("Yes"))
-        {
+        if(temp[1].equals("Yes")) {
             p=0;
-        } else if(temp[1].equals("No"))
-        {
+        } else if(temp[1].equals("No")) {
             p=1;
         }
 
-        if(temp[2].equals("Yes"))
-        {
+        if(temp[2].equals("Yes")) {
             j=0;
-        } else if(temp[2].equals("No"))
-        {
+        } else if(temp[2].equals("No")) {
             j=1;
         }
 
-        if(temp[3].equals("Urban"))
-        {
+        if(temp[3].equals("Urban")) {
             a=0;
-        } else if(temp[3].equals("Rural"))
-        {
+        } else if(temp[3].equals("Rural")) {
             a=1;
         }
 
-        if(temp[4].equals("Yes"))
-        {
+        if(temp[4].equals("Yes")) {
            b=0; 
         } else if(temp[4].equals("No")){
            b=1;

@@ -88,8 +88,7 @@ public class GUI extends JFrame implements ActionListener{
 
     public void actionPerformed(ActionEvent e)
     {
-        if(e.getSource()==submit)
-        {
+        if(e.getSource()==submit) {
             //Test for inputting factors to check if student becomes entrepreneur
             JOptionPane.showMessageDialog(this,scan.bae.answerString(g.getSelectedIndex(), p
             .getSelectedIndex(), j.getSelectedIndex(), a.getSelectedIndex(),

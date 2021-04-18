@@ -33,8 +33,7 @@ public class Bayes {
         givenno = calculateNo(g, p, j, a, b);
         //System.out.println(givenyes +"\n"+ givenno+"\n");
 
-        if (givenyes > givenno)
-        {
+        if (givenyes > givenno) {
             entre = "Yes";
         } else {
             entre = "No";
@@ -49,8 +48,7 @@ public class Bayes {
         givenno = calculateNo(g, p, j, a, b);
         //System.out.println(givenyes +"\n"+ givenno+"\n");
 
-        if (givenyes > givenno)
-        {
+        if (givenyes > givenno) {
             entre = "Yes";
             return "This student is likely to become an entrepreneur";
         } else {
