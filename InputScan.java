@@ -25,6 +25,8 @@ public class InputScan
 
     //Stores data from csv, used for future additions to set
     private ArrayList<String[]> holding;
+    //Stores data meant to test data set
+    private ArrayList<String[]> testing;
 
 
     /*Stores factors for
@@ -52,8 +54,10 @@ public class InputScan
         flen = 291;
         //70% of data is used to 'build'
         per=.7f;
+
         //Sets percentage of build data as int, to be used in loops
         build=Math.round(flen*per);
+
         //System.out.println(build);
         holding = new ArrayList<String[]>();
         factors = new int[12][3];
@@ -67,15 +71,22 @@ public class InputScan
             String[] temp = new String[6];
             
             //Nested loop to split dataset into accessible chunks
-            for(int i=0;i<build;i++)
+            for(int i=0;i<flen;i++)
             {
                 //Prevents first three lines from being accessed
                 if(i>2)
                 {
                     temp = scan.nextLine().split(",\\s*");
+                    //Goes up to 'build' portion of dataset, adding to factors
+                    if(i<build) 
+                    {
+                        //Succinctly increments factors, to calculate necessary percentages 
+                        factorise(temp);
+                    //Tests current factors against rest of the dataset
+                    } else if(i>build) {
+                        testing.add(temp);
+                    }
                     
-                    //Succinctly increments factors, to calculate necessary percentages 
-                    factorise(temp);
                 } else {
                     //Skips line to get to relevant data
                     scan.nextLine();
@@ -91,6 +102,8 @@ public class InputScan
             //Exports data required for Naive Bayes calculation
             //New class since InputScan was getting cluttered
             bae = new Bayes(this);
+
+            //for(int i=build;i<flen)
             
         } catch(FileNotFoundException e)
         {
@@ -259,20 +272,6 @@ public class InputScan
         System.out.println("Urban: "+factors[6][2]+"  Rural: "+factors[7][2]);
         System.out.println("Studies business: "+factors[8][2]+"  Does not study business: "+factors[9][2]);
         System.out.println("");
-        /*
-        //Iterates through each 'row'
-        for(int i=0;i<100;i++)
-        {
-            //Prints the factors of a row on a single line
-            for(int j=0;j<6;j++)
-            {
-                System.out.print(hold[i][j]+" ");
-            }
-            //Prints new line
-            System.out.println("");
-            
-        }
-        */
     }
 
     public void printHold()
@@ -311,8 +310,61 @@ public class InputScan
         factorise(ele);
     }
     
-    
-    
+    //Uses rest of csv to test data sheet 
+    public void testData(String[] temp)
+    {
+        int g,p,j,a,b;
+        g=p=j=a=b=0;
+        if(temp[0].equals("Male"))
+        {
+            g=0;
+        } else if(temp[0].equals("Female"))
+        {
+            g=1;
+        }
+
+        if(temp[1].equals("Yes"))
+        {
+            p=0;
+        } else if(temp[1].equals("No"))
+        {
+            p=1;
+        }
+
+        if(temp[2].equals("Yes"))
+        {
+            j=0;
+        } else if(temp[2].equals("No"))
+        {
+            j=1;
+        }
+
+        if(temp[3].equals("Urban"))
+        {
+            a=0;
+        } else if(temp[3].equals("Rural"))
+        {
+            a=1;
+        }
+
+        if(temp[4].equals("Yes"))
+        {
+           b=0; 
+        } else if(temp[4].equals("No")){
+           b=1;
+        }
+
+        //Passes in values, determining if data is predicted as entrepreneur or not
+        String test = bae.answerTest(g, p, j, a, b);
+
+        //Compares. Couldn't figure out a way of influencing probabilities, so left blank for now
+        if(temp[5].contains(test))
+        {
+            addElement(temp);
+        } else {
+            addElement(temp);
+        }
+    }
     //Get/Sets for private variables
     public String getFile() {
         return this.file;
