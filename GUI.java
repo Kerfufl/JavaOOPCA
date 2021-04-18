@@ -91,7 +91,7 @@ public class GUI extends JFrame implements ActionListener{
         if(e.getSource()==submit)
         {
             //Test for inputting factors to check if student becomes entrepreneur
-            JOptionPane.showMessageDialog(this,scan.bae.answer(g.getSelectedIndex(), p
+            JOptionPane.showMessageDialog(this,scan.bae.answerString(g.getSelectedIndex(), p
             .getSelectedIndex(), j.getSelectedIndex(), a.getSelectedIndex(),
              b.getSelectedIndex()));
 

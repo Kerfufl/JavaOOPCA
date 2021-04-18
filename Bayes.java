@@ -25,12 +25,29 @@ public class Bayes {
         givenno = calculateNo(0,0,0,0,0);
     }
 
-    //Function to compare yes/no values
-    public String answer(int g, int p, int j, int a, int b)
+    //Functions to compare yes/no values
+    //Returns floats for testing dataset
+    public String answerTest(int g, int p, int j, int a, int b)
     {
         givenyes= calculateYes(g, p, j, a, b);
         givenno = calculateNo(g, p, j, a, b);
-        System.out.println(givenyes +"\n"+ givenno+"\n");
+        //System.out.println(givenyes +"\n"+ givenno+"\n");
+
+        if (givenyes > givenno)
+        {
+            entre = "Yes";
+        } else {
+            entre = "No";
+        }
+
+        return entre;
+    }
+    //Returns string for GUI/standalone purposes
+    public String answerString(int g, int p, int j, int a, int b)
+    {
+        givenyes= calculateYes(g, p, j, a, b);
+        givenno = calculateNo(g, p, j, a, b);
+        //System.out.println(givenyes +"\n"+ givenno+"\n");
 
         if (givenyes > givenno)
         {
