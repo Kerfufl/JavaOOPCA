@@ -5,14 +5,19 @@ import java.lang.Math;
 import java.util.Arrays;
 import java.util.ArrayList;
 
-//Class to read MLdata.csv file, with functions pertaining to such
+
+/*
+Class to read MLdata.csv file, with functions pertaining to such
+Reads the csv, creates dataset for factors
+Tests the built data, adding to set with an accuracy ratio
+Passes on stored data, such as the factors and their percentage chance, to Bayes class 
+*/
 public class InputScan
 {
     Bayes bae;
     File csv;
     Scanner scan;
     private String file;
-
     //Used for dividing file between build and test data
     float flen;
     //Represents percentage of data used to build model
@@ -44,20 +49,21 @@ public class InputScan
     //Similar to above but for percentages
     private float[][] percent;
 
+    //Total of students, vital in calculating percentages later
     private int total;
     
     
     //Differentiates between entrepreneurs and not-entrepreneurs
     private int yn;
     //Instantiates the file name
-    public InputScan(String file)
+    public InputScan(String file, float per)
     {
         this.file = file;
         title = new String[] {"Gender","Parent/Guardian","Part-time Job","Urban/Rural","Studies Business","Entrepreneur"};
         //Sets max length of array and percentage to be used as build data
         flen = 291;
         //70% of data is used to 'build'
-        per=.7f;
+        this.per=per;
 
         //Sets percentage of build data as int, to be used in loops
         build=Math.round(flen*per);
@@ -116,8 +122,10 @@ public class InputScan
                 testData(i);
             }
             
+            //Captures accuracy of testing, to be displayed in the gui
+            accuracy = correct/testset;
             //Debug for 
-            //System.out.println(correct+"\n"+testset);
+            //System.out.println(Math.round(correct)+"\n"+Math.round(testset));
             //System.out.println((correct/testset)*100+"% accuracy");
 
             //Calculates dataset after testing of dataset
@@ -244,6 +252,60 @@ public class InputScan
         }
     }
 
+    public void addElement(String[] ele)
+    {
+        holding.add(ele);
+
+        factorise(ele);
+    }
+    
+    //Uses rest of csv to test data sheet 
+    public void testData(String[] temp)
+    {
+        int g,p,j,a,b;
+        g=p=j=a=b=0;
+        if(temp[0].equals("Male")) {
+            g=0;
+        } else if(temp[0].equals("Female")) {
+            g=1;
+        }
+
+        if(temp[1].equals("Yes")) {
+            p=0;
+        } else if(temp[1].equals("No")) {
+            p=1;
+        }
+
+        if(temp[2].equals("Yes")) {
+            j=0;
+        } else if(temp[2].equals("No")) {
+            j=1;
+        }
+
+        if(temp[3].equals("Urban")) {
+            a=0;
+        } else if(temp[3].equals("Rural")) {
+            a=1;
+        }
+
+        if(temp[4].equals("Yes")) {
+           b=0; 
+        } else if(temp[4].equals("No")){
+           b=1;
+        }
+
+        //Passes in values, determining if data is predicted as entrepreneur or not
+        String test = bae.answerTest(g, p, j, a, b);
+
+        //Compares. Couldn't figure out a way of influencing probabilities, so left blank for now
+        if(temp[5].contains(test))
+        {
+            correct++;
+            addElement(temp);
+        } else {
+            addElement(temp);
+        }
+    }
     //Debug function for checking array capabilities 
     public void printFactors()
     {
@@ -310,60 +372,6 @@ public class InputScan
         
     }
 
-    public void addElement(String[] ele)
-    {
-        holding.add(ele);
-
-        factorise(ele);
-    }
-    
-    //Uses rest of csv to test data sheet 
-    public void testData(String[] temp)
-    {
-        int g,p,j,a,b;
-        g=p=j=a=b=0;
-        if(temp[0].equals("Male")) {
-            g=0;
-        } else if(temp[0].equals("Female")) {
-            g=1;
-        }
-
-        if(temp[1].equals("Yes")) {
-            p=0;
-        } else if(temp[1].equals("No")) {
-            p=1;
-        }
-
-        if(temp[2].equals("Yes")) {
-            j=0;
-        } else if(temp[2].equals("No")) {
-            j=1;
-        }
-
-        if(temp[3].equals("Urban")) {
-            a=0;
-        } else if(temp[3].equals("Rural")) {
-            a=1;
-        }
-
-        if(temp[4].equals("Yes")) {
-           b=0; 
-        } else if(temp[4].equals("No")){
-           b=1;
-        }
-
-        //Passes in values, determining if data is predicted as entrepreneur or not
-        String test = bae.answerTest(g, p, j, a, b);
-
-        //Compares. Couldn't figure out a way of influencing probabilities, so left blank for now
-        if(temp[5].contains(test))
-        {
-            correct++;
-            addElement(temp);
-        } else {
-            addElement(temp);
-        }
-    }
     //Get/Sets for private variables
     public String getFile() {
         return this.file;
@@ -475,6 +483,23 @@ public class InputScan
 
     public void setYn(int yn) {
         this.yn = yn;
+    }
+
+
+    public float getCorrect() {
+        return this.correct;
+    }
+
+    public void setCorrect(float correct) {
+        this.correct = correct;
+    }
+
+    public float getAccuracy() {
+        return this.accuracy;
+    }
+
+    public void setAccuracy(float accuracy) {
+        this.accuracy = accuracy;
     }
 
 

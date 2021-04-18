@@ -1,6 +1,8 @@
-//Holds methods for calculating Naive Bayes
-//Can be accessed through InputScan
-//Uses data held in InputScan
+/*
+Holds methods for calculating Naive Bayes
+Can be accessed through InputScan
+Uses data held in InputScan
+*/
 public class Bayes {
     //Floats to contain class probabilities for Naive Bayes
     private float nom;
@@ -56,7 +58,7 @@ public class Bayes {
             return "This student is unlikely to become an entrepreneur";
         }
     }
-    //
+    //Calculates odds of student becoming entrepreneur with given factors
     public float calculateYes(int g, int p, int j, int a, int b)
     {
         //Test using 'default' value for each factor where entrepreneur == yes
@@ -64,7 +66,7 @@ public class Bayes {
         denom =  scan.getPercent()[0+g][0] * scan.getPercent()[2+p][0] * scan.getPercent()[4+j][0] * scan.getPercent()[6+a][0] * scan.getPercent()[8+b][0];
         return nom/denom;
     }
-    
+    //As above but for 'no'
     public float calculateNo(int g, int p, int j, int a, int b)
     {
         nom = (scan.getPercent()[0+g][2] * scan.getPercent()[2+p][2] * scan.getPercent()[4+j][2] * scan.getPercent()[6+a][2] * scan.getPercent()[8+b][2] * scan.getPercent()[11][0]);
