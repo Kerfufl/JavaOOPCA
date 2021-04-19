@@ -1,1 +1,47 @@
-Naive Bayes
+Naive Bayes OOP Assignment
+
+Classes:
+	Control:
+	-Simple driver code, as most functionality is containe din other classes
+	-Initialises InputScan and gui classes, with some optional debug
+
+	InputScan:
+	-Class which reads the csv, analyses the data, and factorises it for use in Naive Bayes
+	-Spans multiple methods, couldn't find a good point to split it further before Naive Bayes
+	-Needed to be referenced in other classes, namely Bayes and GUI
+	-Does most of the legwork for factoring and 'sorting' data
+	-Majority of work done in initialisation but can be accessed through methods later
+	
+	Bayes:
+	-Calculates likelihood of instances being entrepreneur or not, using a dataset from InputScan
+	-Mostly used by GUI for testing instances, but is used to test built data
+	-Has methods that feed into the main 'judging' method
+
+	GUI:
+	-Initialises JFrame, adding several components making up the UI
+	-Holds function for assessing whether student becomes entrepreneur, passing info to Bayes
+	-Displays factors/percentages in dataset, and the overall accuracy from the InputScan
+
+Core Functionality Implemented:
+	-Reading of csv
+	-Categorising data into respective areas
+	-Reservation of data to be used as a test of accuracy for dataset
+	-Factors developed, for all students, and for either case
+	-Percentages created from said factors, to be used in Naive Bayes
+	-Classifier is defined using percentages, utilised on request from gui
+	-GUI to implement instance input
+	  -Dropboxes to minimise input error
+	  -Button to take input and enter into Bayes calculations
+	  -Compares prob if entrepreneur or not, then tells you the most likely outcome
+	  -Adds instance to overall dataset, refactoring the relevant factors/percentages
+
+Optional features:
+	-Accuracy of dataset, calculated as part of core functions, is displayed for users
+	-Overall factors/ percentages are on display, with tabbed panes allow for switching between the two
+
+Wishful Thinking:
+	-I hadn't fully understood Layout managers in Swing, so a better gui could have been possible
+	-With a better gui, I would have added *fun facts*, randomly generating fun facts based on factors,
+	ie, "Female Student are more elikely to become netrepreneurs"
+	-Due to the way I coded the building/ testing of the dataset, I couldn't implement a way of improving the 		dataset through the building.
+	-Maybe a debug feature to reveal the probabilities when checking an instance

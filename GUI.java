@@ -66,6 +66,7 @@ public class GUI extends JFrame implements ActionListener{
         welcome.setForeground(Color.white);
         descr = new JLabel("This device will predict if a given student will become an entrepreneur");
         descr.setForeground(Color.white);
+
         //Informs user of the accuracy of the Naive Bayes dataset
         accuracy = new JLabel();
         accuracy.setText(acc+"% Accuracy reported in the dataset");
@@ -137,7 +138,7 @@ public class GUI extends JFrame implements ActionListener{
     {
         return scan.toStringPercent();
     }
-
+    
     public void actionPerformed(ActionEvent e)
     {
         if(e.getSource()==submit) {

@@ -29,9 +29,6 @@ public class InputScan
     //and storing total accuracy for use in gui
     float accuracy;
 
-    //Holds headings for table in gui
-    private String[] title;
-
     //Stores data from csv, used for future additions to set
     private ArrayList<String[]> holding;
     //Stores data meant to test data set
@@ -59,7 +56,6 @@ public class InputScan
     public InputScan(String file, float per)
     {
         this.file = file;
-        title = new String[] {"Gender","Parent/Guardian","Part-time Job","Urban/Rural","Studies Business","Entrepreneur"};
         //Sets length of the file
         flen = 291;
         //70% of data is used to 'build'
@@ -426,14 +422,6 @@ public class InputScan
 
     public void setFile(String file) {
         this.file = file;
-    }
-
-    public String[] getTitle() {
-        return this.title;
-    }
-
-    public void setTitle(String[] title) {
-        this.title = title;
     }
 
     public int[][] getFactors() {
