@@ -15,6 +15,7 @@ public class Control
         //data.printTesting();
         //data.printPercent();
         //System.out.println(data.toString());
+        
         //Inititates gui with title and access to two vital classes
         GUI g = new GUI("Assignment", data);
     }
