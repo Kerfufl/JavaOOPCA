@@ -17,7 +17,7 @@ public class GUI extends JFrame implements ActionListener{
     //Holds strings for comparing to InputScan Methods
     String[] temp;
     //Holds long string to display factors
-    String facs;
+    String facs,pers;
     //Used for displaying solid percentage
     int acc;
     //Used to toggle gui element
@@ -25,18 +25,16 @@ public class GUI extends JFrame implements ActionListener{
 
     //Definitions for components
     JPanel top,add,desc;
-    JTable table;
 
-    JTextArea dyk;
+    JTabbedPane tab;
+    JTextArea dyk, perc;
     JLabel welcome,descr,input,accuracy;
-    
-    JTextArea m;
 
     JButton submit;
 
     JComboBox g,p,j,a,b;
     
-
+    //Removes warning of implementing action listener/ gui in general
     static final long serialVersionUID = 0;
     public GUI(String title, InputScan i)
     {
@@ -75,28 +73,19 @@ public class GUI extends JFrame implements ActionListener{
 
         //Text area holding factors. Bulky, as I couldn't succinctly port this from the other class
         dyk = new JTextArea();
-        facs = "A run-down of the factors gathered so far:\n"+
-        "Total: "+scan.getTotal()+"  Entrepreneurs: "+scan.getFactors()[10][0]+"  Not Entrepreneurs: "+scan.getFactors()[11][0]+"\n"+
-        "Males: "+scan.getFactors()[0][0]+"  Females: "+scan.getFactors()[1][0]+"\n"+
-        "Parents owned business: "+scan.getFactors()[2][0]+"  Parents didn't own business: "+scan.getFactors()[3][0]+"\n"+
-        "Has part-time job: "+scan.getFactors()[4][0]+"  No job: "+scan.getFactors()[5][0]+"\n"+
-        "Urban: "+scan.getFactors()[6][0]+"  Rural: "+scan.getFactors()[7][0]+"\n"+
-        "Studies business: "+scan.getFactors()[8][0]+"  Does not study business: "+scan.getFactors()[9][0]+"\n\n"+
-        "That became Entrepreneurs:\n"+
-        "Males: "+scan.getFactors()[0][1]+"  Females: "+scan.getFactors()[1][1]+"\n"+
-        "Parents owned business: "+scan.getFactors()[2][1]+"  Parents didn't own business: "+scan.getFactors()[3][1]+"\n"+
-        "Has part-time job: "+scan.getFactors()[4][1]+"  No job: "+scan.getFactors()[5][1]+"\n"+
-        "Urban: "+scan.getFactors()[6][1]+"  Rural: "+scan.getFactors()[7][1]+"\n"+
-        "Studies business: "+scan.getFactors()[8][1]+"  Does not study business: "+scan.getFactors()[9][1]+"\n\n"+
-        "That did not become Entrepreneurs:\n"+
-        "Males: "+scan.getFactors()[0][2]+"  Females: "+scan.getFactors()[1][2]+"\n"+
-        "Parents owned business: "+scan.getFactors()[2][2]+"  Parents didn't own business: "+scan.getFactors()[3][2]+"\n"+
-        "Has part-time job: "+scan.getFactors()[4][2]+"  No job: "+scan.getFactors()[5][2]+"\n"+
-        "Urban: "+scan.getFactors()[6][2]+"  Rural: "+scan.getFactors()[7][2]+"\n"+
-        "Studies business: "+scan.getFactors()[8][2]+"  Does not study business: "+scan.getFactors()[9][2]+"\n\n"+""
-        ;
+        facs = setFacs();
         dyk.setText(facs);
         dyk.setEditable(false);
+
+        perc = new JTextArea();
+        pers = setPers();
+        perc.setText(pers);
+        perc.setEditable(false);
+
+
+        tab = new JTabbedPane();
+        tab.addTab("Factors", dyk);
+        tab.addTab("Percentages", perc);
 
         //Small message to inform user of input instructions
         input = new JLabel("Please enter the requisite information to discover whether the student will become an entrepreneur");
@@ -119,7 +108,7 @@ public class GUI extends JFrame implements ActionListener{
 
         //Ensures components start where they should
         desc.add(accuracy, BorderLayout.PAGE_START);
-        desc.add(dyk);
+        desc.add(tab);
         desc.add(input, BorderLayout.SOUTH);
         
         add(desc, BorderLayout.CENTER);
@@ -139,27 +128,14 @@ public class GUI extends JFrame implements ActionListener{
         //JOptionPane.showMessageDialog(this, scan.bae.getGivenyes());
     }
     //Updates factors when instances are added, for flavour
-    public void setFacs()
+    public String setFacs()
     {
-        facs = "A run-down of the factors gathered so far:\n"+
-        "Total: "+scan.getTotal()+"  Entrepreneurs: "+scan.getFactors()[10][0]+"  Not Entrepreneurs: "+scan.getFactors()[11][0]+"\n"+
-        "Males: "+scan.getFactors()[0][0]+"  Females: "+scan.getFactors()[1][0]+"\n"+
-        "Parents owned business: "+scan.getFactors()[2][0]+"  Parents didn't own business: "+scan.getFactors()[3][0]+"\n"+
-        "Has part-time job: "+scan.getFactors()[4][0]+"  No job: "+scan.getFactors()[5][0]+"\n"+
-        "Urban: "+scan.getFactors()[6][0]+"  Rural: "+scan.getFactors()[7][0]+"\n"+
-        "Studies business: "+scan.getFactors()[8][0]+"  Does not study business: "+scan.getFactors()[9][0]+"\n\n"+
-        "That became Entrepreneurs:\n"+
-        "Males: "+scan.getFactors()[0][1]+"  Females: "+scan.getFactors()[1][1]+"\n"+
-        "Parents owned business: "+scan.getFactors()[2][1]+"  Parents didn't own business: "+scan.getFactors()[3][1]+"\n"+
-        "Has part-time job: "+scan.getFactors()[4][1]+"  No job: "+scan.getFactors()[5][1]+"\n"+
-        "Urban: "+scan.getFactors()[6][1]+"  Rural: "+scan.getFactors()[7][1]+"\n"+
-        "Studies business: "+scan.getFactors()[8][1]+"  Does not study business: "+scan.getFactors()[9][1]+"\n\n"+
-        "That did not become Entrepreneurs:\n"+
-        "Males: "+scan.getFactors()[0][2]+"  Females: "+scan.getFactors()[1][2]+"\n"+
-        "Parents owned business: "+scan.getFactors()[2][2]+"  Parents didn't own business: "+scan.getFactors()[3][2]+"\n"+
-        "Has part-time job: "+scan.getFactors()[4][2]+"  No job: "+scan.getFactors()[5][2]+"\n"+
-        "Urban: "+scan.getFactors()[6][2]+"  Rural: "+scan.getFactors()[7][2]+"\n"+
-        "Studies business: "+scan.getFactors()[8][2]+"  Does not study business: "+scan.getFactors()[9][2]+"\n\n";
+        return scan.toString();
+    }
+
+    public String setPers()
+    {
+        return scan.toStringPercent();
     }
 
     public void actionPerformed(ActionEvent e)
@@ -177,8 +153,11 @@ public class GUI extends JFrame implements ActionListener{
             scan.addElement(temp);
             
             //Updates factors in text area
-            setFacs();
+            facs = setFacs();
             dyk.setText(facs);
+
+            pers = setPers();
+            perc.setText(pers);
         } 
     }
     

@@ -60,7 +60,7 @@ public class InputScan
     {
         this.file = file;
         title = new String[] {"Gender","Parent/Guardian","Part-time Job","Urban/Rural","Studies Business","Entrepreneur"};
-        //Sets max length of array and percentage to be used as build data
+        //Sets length of the file
         flen = 291;
         //70% of data is used to 'build'
         this.per=per;
@@ -94,7 +94,7 @@ public class InputScan
                     {
                         //Succinctly increments factors, to calculate necessary percentages 
                         factorise(temp);
-                    //Tests current factors against rest of the dataset
+                    //Places rest of factors aside to test dataset later
                     } else if(i>build) {
                         testing.add(temp);
                     }
@@ -252,11 +252,15 @@ public class InputScan
         }
     }
 
+    //Used in gui to add instances to dataset
     public void addElement(String[] ele)
     {
+        //Adds instance to internal dataset
         holding.add(ele);
-
+        //Adjusts numbers in factors array for data display
         factorise(ele);
+        //Updates percentages to match changes in factors
+        percentise();
     }
     
     //Uses rest of csv to test data sheet 
@@ -306,7 +310,8 @@ public class InputScan
             addElement(temp);
         }
     }
-    //Debug function for checking array capabilities 
+    //Debug function for checking array capabilities
+    //Superceded by toString() implementation
     public void printFactors()
     {
         System.out.println("Total: "+total+"  Entrepreneurs: "+factors[10][0]+"  Not Entrepreneurs: "+factors[11][0]);
@@ -334,6 +339,22 @@ public class InputScan
         System.out.println("");
     }
 
+    public void printPercent()
+    {
+        System.out.println("Total: "+total+"  Entrepreneurs: "+percent[10][0]+"  Not Entrepreneurs: "+percent[11][0]);
+        for(int i=0;i<3;i++)
+        {
+        System.out.println("Male: "+percent[0][i]+"  Female: "+percent[1][i]);
+        System.out.println("Parents owned business: "+percent[2][i]+"  Parents didn't own business: "+percent[3][i]);
+        System.out.println("Has part-time job: "+percent[4][i]+"  No job: "+percent[5][i]);
+        System.out.println("Urban: "+percent[6][i]+"  Rural: "+percent[7][i]);
+        System.out.println("Studies business: "+percent[8][i]+"  Does not study business: "+percent[9][i]);
+        System.out.println("");
+
+        System.out.println(bae.getGivenyes()+ "  "+bae.getGivenno());
+        }
+    }
+
     public void printHolding()
     {
         for(String[] i: holding)
@@ -351,25 +372,51 @@ public class InputScan
         }
         
     }
-
-    public void printPercent()
+    //Used to return equivalent of toString, but for percentages instead of factors
+    public String toStringPercent()
     {
-        System.out.println("Total: "+total+"  Entrepreneurs: "+percent[10][0]+"  Not Entrepreneurs: "+percent[11][0]);
-        for(int i=0;i<3;i++)
-        {
-        System.out.println("Male: "+percent[0][i]+"  Female: "+percent[1][i]);
-        System.out.println("Parents owned business: "+percent[2][i]+"  Parents didn't own business: "+percent[3][i]);
-        System.out.println("Has part-time job: "+percent[4][i]+"  No job: "+percent[5][i]);
-        System.out.println("Urban: "+percent[6][i]+"  Rural: "+percent[7][i]);
-        System.out.println("Studies business: "+percent[8][i]+"  Does not study business: "+percent[9][i]);
-        System.out.println("");
-
-        System.out.println(bae.getGivenyes()+ "  "+bae.getGivenno());
-        }
-        
-
-        
-        
+        return "A run-down of the factors gathered so far, in terms of percentages:\n"+
+        "Total: "+total+"  Entrepreneurs: "+percent[10][0]+"  Not Entrepreneurs: "+percent[11][0]+"\n"+
+        "Males: "+percent[0][0]+"  Females: "+percent[1][0]+"\n"+
+        "Parents owned business: "+percent[2][0]+"  Parents didn't own business: "+percent[3][0]+"\n"+
+        "Has part-time job: "+percent[4][0]+"  No job: "+percent[5][0]+"\n"+
+        "Urban: "+percent[6][0]+"  Rural: "+percent[7][0]+"\n"+
+        "Studies business: "+percent[8][0]+"  Does not study business: "+percent[9][0]+"\n\n"+
+        "That became Entrepreneurs:\n"+
+        "Males: "+percent[0][1]+"  Females: "+percent[1][1]+"\n"+
+        "Parents owned business: "+percent[2][1]+"  Parents didn't own business: "+percent[3][1]+"\n"+
+        "Has part-time job: "+percent[4][1]+"  No job: "+percent[5][1]+"\n"+
+        "Urban: "+percent[6][1]+"  Rural: "+percent[7][1]+"\n"+
+        "Studies business: "+percent[8][1]+"  Does not study business: "+percent[9][1]+"\n\n"+
+        "That did not become Entrepreneurs:\n"+
+        "Males: "+percent[0][2]+"  Females: "+percent[1][2]+"\n"+
+        "Parents owned business: "+percent[2][2]+"  Parents didn't own business: "+percent[3][2]+"\n"+
+        "Has part-time job: "+percent[4][2]+"  No job: "+percent[5][2]+"\n"+
+        "Urban: "+percent[6][2]+"  Rural: "+percent[7][2]+"\n"+
+        "Studies business: "+percent[8][2]+"  Does not study business: "+percent[9][2]+"\n\n";
+    }
+    //Returns factors, unclutters gui
+    public String toString()
+    {
+        return "A run-down of the factors gathered so far:\n"+
+        "Total: "+total+"  Entrepreneurs: "+factors[10][0]+"  Not Entrepreneurs: "+factors[11][0]+"\n"+
+        "Males: "+factors[0][0]+"  Females: "+factors[1][0]+"\n"+
+        "Parents owned business: "+factors[2][0]+"  Parents didn't own business: "+factors[3][0]+"\n"+
+        "Has part-time job: "+factors[4][0]+"  No job: "+factors[5][0]+"\n"+
+        "Urban: "+factors[6][0]+"  Rural: "+factors[7][0]+"\n"+
+        "Studies business: "+factors[8][0]+"  Does not study business: "+factors[9][0]+"\n\n"+
+        "That became Entrepreneurs:\n"+
+        "Males: "+factors[0][1]+"  Females: "+factors[1][1]+"\n"+
+        "Parents owned business: "+factors[2][1]+"  Parents didn't own business: "+factors[3][1]+"\n"+
+        "Has part-time job: "+factors[4][1]+"  No job: "+factors[5][1]+"\n"+
+        "Urban: "+factors[6][1]+"  Rural: "+factors[7][1]+"\n"+
+        "Studies business: "+factors[8][1]+"  Does not study business: "+factors[9][1]+"\n\n"+
+        "That did not become Entrepreneurs:\n"+
+        "Males: "+factors[0][2]+"  Females: "+factors[1][2]+"\n"+
+        "Parents owned business: "+factors[2][2]+"  Parents didn't own business: "+factors[3][2]+"\n"+
+        "Has part-time job: "+factors[4][2]+"  No job: "+factors[5][2]+"\n"+
+        "Urban: "+factors[6][2]+"  Rural: "+factors[7][2]+"\n"+
+        "Studies business: "+factors[8][2]+"  Does not study business: "+factors[9][2]+"\n\n";
     }
 
     //Get/Sets for private variables
