@@ -45,3 +45,4 @@ Wishful Thinking:
 	ie, "Female Student are more elikely to become netrepreneurs"
 	-Due to the way I coded the building/ testing of the dataset, I couldn't implement a way of improving the 		dataset through the building.
 	-Maybe a debug feature to reveal the probabilities when checking an instance
+	-I had previously implemented a Jtable with the dataset, but my switch from arrays to arraylists made this 	near impossible to maintain, so it was dropped
